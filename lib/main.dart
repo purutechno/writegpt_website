@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:writegpt_website/screens/about_us/about_us_screen.dart';
+import 'package:writegpt_website/screens/onboarding/onboarding_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const AboutUsScreen(),
+      home: const OnBoardingScreen(),
     );
   }
 }

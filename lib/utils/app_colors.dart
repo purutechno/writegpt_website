@@ -8,4 +8,7 @@ class AppColors {
   static Color textSecondaryColor = Colors.grey;
   static Color videoBgColor = const Color(0xFFD9D9D9);
   static Color buttonPrimaryColor = Color(0xFFF4A733);
+
+
+  static Color keyboardHintButtonColor =  Colors.white;
 }
