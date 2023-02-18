@@ -22,33 +22,29 @@ class _ScaffoldBodyWidgetState extends State<ScaffoldBodyWidget> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: 1920,
-          alignment: Alignment.center,
-          child: Stack(
+          // alignment: Alignment.center,
+          child: ListView(
             children: [
-              SizedBox(
-                // height: 800,
-                child: Image.asset(
-                  AssetUtils.getPngImage('colored_bg'),
-                  width: 1920,
-                  fit: BoxFit.fitWidth,
-                ),
-              ),
-              ListView(
+              Stack(
                 children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      constraints: BoxConstraints(maxHeight: 900),
+                      width: 1920,
+                      child: Image.asset(
+                        AssetUtils.getPngImage('colored_bg'),
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+                  ),
                   const AppbarWidget(),
-                  widget.child,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 64.0),
+                    child: widget.child,
+                  ),
                 ],
               ),
-              // Column(
-              //   children: [
-              //     AppbarWidget(),
-              //     Expanded(
-              //       child: SingleChildScrollView(
-              //         child: widget.child,
-              //       ),
-              //     )
-              //   ],
-              // ),
             ],
           ),
         ),

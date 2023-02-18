@@ -55,6 +55,9 @@ class AppButtonWidget extends StatelessWidget {
           child: MaterialButton(
             elevation: 0,
             height: height,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            // hoverColor: appButtonType==AppButtonType.primaryOutlineBorder?,
             onPressed: enabled ? (loading ? () {} : onPressed) : () {},
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -97,6 +100,10 @@ class AppButtonWidget extends StatelessWidget {
     // if (!enabled) return const Color(0xFFC4C4C4);
     if (appButtonType == AppButtonType.primary) {
       return AppColors.buttonPrimaryColor;
+    }
+
+    if (appButtonType == AppButtonType.primaryOutlineBorder) {
+      return Colors.transparent;
     }
 
     return Colors.white;

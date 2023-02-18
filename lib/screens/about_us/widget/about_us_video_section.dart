@@ -10,12 +10,14 @@ class AboutUsVideoSectionWidget extends StatefulWidget {
   final Widget child;
   final String videoUrl;
   final bool isVideoFirst;
+  final MainAxisAlignment mainAxisAlignment;
   const AboutUsVideoSectionWidget({
     super.key,
     required this.title,
     required this.child,
     required this.videoUrl,
     this.isVideoFirst = false,
+    this.mainAxisAlignment = MainAxisAlignment.center,
   });
 
   @override
@@ -26,35 +28,40 @@ class AboutUsVideoSectionWidget extends StatefulWidget {
 class _AboutUsVideoSectionWidgetState extends State<AboutUsVideoSectionWidget> {
   @override
   Widget build(BuildContext context) {
-    return CustomBootstrapContainer(
-      children: [
-        CustomBootstrapRow(
-          children: [
-            CustomBootstrapCol(
-              sizes: 'col-12 col-lg-6',
-              child: widget.isVideoFirst
-                  ? VideoSectionWidget(
-                      videoUrl: widget.videoUrl,
-                    )
-                  : AboutUsVideoInfoWidget(
-                      title: widget.title,
-                      child: widget.child,
-                    ),
-            ),
-            CustomBootstrapCol(
-              sizes: 'col-12 col-lg-6',
-              child: !widget.isVideoFirst
-                  ? VideoSectionWidget(
-                      videoUrl: widget.videoUrl,
-                    )
-                  : AboutUsVideoInfoWidget(
-                      title: widget.title,
-                      child: widget.child,
-                    ),
-            ),
-          ],
-        ),
-      ],
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 30),
+      child: CustomBootstrapContainer(
+        children: [
+          CustomBootstrapRow(
+            children: [
+              CustomBootstrapCol(
+                sizes: 'col-12 col-sm-12 col-md-12 col-lg-6',
+                child: widget.isVideoFirst
+                    ? VideoSectionWidget(
+                        videoUrl: widget.videoUrl,
+                      )
+                    : AboutUsVideoInfoWidget(
+                        title: widget.title,
+                        mainAxisAlignment: widget.mainAxisAlignment,
+                        child: widget.child,
+                      ),
+              ),
+              CustomBootstrapCol(
+                sizes: 'col-12 col-12 col-sm-12 col-md-12 col-lg-6',
+                child: !widget.isVideoFirst
+                    ? VideoSectionWidget(
+                        videoUrl: widget.videoUrl,
+                      )
+                    : AboutUsVideoInfoWidget(
+                        title: widget.title,
+                        mainAxisAlignment: widget.mainAxisAlignment,
+                        child: widget.child,
+                      ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -62,25 +69,33 @@ class _AboutUsVideoSectionWidgetState extends State<AboutUsVideoSectionWidget> {
 class AboutUsVideoInfoWidget extends StatelessWidget {
   final String title;
   final Widget child;
+  final MainAxisAlignment mainAxisAlignment;
+
   const AboutUsVideoInfoWidget({
     super.key,
     required this.title,
     required this.child,
+    required this.mainAxisAlignment,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       // color: Colors.yellow,
-      height: 300,
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+      height: 370,
+      // margin: EdgeInsets.symmetric(vertical: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
+        // mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: mainAxisAlignment,
         children: [
           TextWidget(
             title,
             style: CustomTextStyles.text40_500,
+          ),
+          const SizedBox(
+            height: 10,
           ),
           child,
         ],
